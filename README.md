@@ -11,6 +11,10 @@ Packages needed:
 BeautifulSoup4 4.6.0
 selenium 3.13.0
 
+YOU MUST INSTALL CHROME WEBDRIVER
+
+http://chromedriver.chromium.org/downloads
+
 # In order to be successful, please add as many exact matching keywords spaced next to the variable keyword.
 
 Examples:
@@ -25,4 +29,6 @@ Examples:
 color = "red"
 color = "grey"
 color = "black"
+
+
 
