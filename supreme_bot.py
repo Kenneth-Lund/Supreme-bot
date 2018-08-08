@@ -7,14 +7,14 @@ from selenium.webdriver.support.ui import Select
 
 #Hello! Welcome to this short demo.  I am still new to Python, let me know if you would like a tutorial on this script!
 
-keywords = "You can put any keywords here polo striped"   #put as many keywords as you want, it will autmatically match product still
-color = "red"      #this color must match same exact one, (lowercase though)
-size = "XSmall"       #you can pick any size, automatically checks for the next size up if out of stock
+initial_search = json.loads(open('setup').read())
+
+keywords = initial_search['keywords']               #put as many keywords as you want, it will autmatically match product still
+color = initial_search['color']                     #this color must match same exact one, (lowercase though)
+size = initial_search['size']                       #you can pick any size, automatically checks for the next size up if out of stock
+supreme_sizes = initial_search['Supreme_Sizes']
+
 base_url = "http://www.supremenewyork.com"
-size_counter = 0
-
-supreme_sizes = ["XSmall","Small", "Medium", "Large", "XLarge"]
-
 
 
 
@@ -71,8 +71,11 @@ def product_checker(keywords, color, base_url):
 
 
 
-#adds product to cart based on selected size, if unavailble will check next size up
 
+#intialize size_counter
+size_counter = 0
+
+#adds product to cart based on selected size, if unavailble will check next size up
 def add_to_cart(size_counter, size):
 
     mySelect = Select(browser.find_element_by_id("s"))
@@ -90,7 +93,7 @@ def add_to_cart(size_counter, size):
         check_out_box.click()
     except:
         #if size was unavailable we are going to check the next size up 
-        size = rotate_size(size_counter, supreme_sizes)
+        size, size_counter = rotate_size(size_counter, supreme_sizes)
         size_counter += 1
         #execute add to cart with new size
         add_to_cart(size_counter, size)
@@ -105,14 +108,16 @@ def add_to_cart(size_counter, size):
 def rotate_size(size_counter, supreme_sizes):
 
     if size_counter > 4:
+        #reset size counter and size back to 0 and xsmall
         size_counter = 0
+        next_size = supreme_sizes[0]
     else:
         next_size = supreme_sizes[size_counter]
         print("size unavailable or Out of Stock trying again...")
         print("Rotating Size to " + next_size)
         print("\n")
 
-    return next_size
+    return next_size, size_counter
 
 
 
