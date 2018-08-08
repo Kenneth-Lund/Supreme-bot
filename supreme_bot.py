@@ -132,7 +132,7 @@ options = Options()
 #options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
 #options.add_argument('--disable-gpu')
 #options.add_argument('--headless')
-browser = webdriver.Chrome(options= options, executable_path=r'/Users/KennethLund/Downloads/chromedriver')
+browser = webdriver.Chrome(options= options, executable_path=r'Insert webdriver path here')
 browser.get(product_link)
 
 #start trying to add to cart after product link is loaded
