@@ -1,6 +1,6 @@
 # Supreme-bot
 Supreme site sniper/ATC bot
-Run 2 minutes before relase
+Run 2 minutes before release
 
 DEMO:
 
